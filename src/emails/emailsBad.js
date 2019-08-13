@@ -1,56 +1,56 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { Badge, Card, CardBody, CardHeader, Col, Row, Table } from 'reactstrap';
+import {   Badge,Card, CardBody, CardHeader, Col, Row, Table } from 'reactstrap';
 
-import usersData from './UsersData'
+
+
+import usersData from './data_emailBad'
 
 function UserRow(props) {
   const user = props.user
-  const userLink = `/users/${user.id}`
 
-  const getBadge = (status) => {
-    return status === 'Active' ? 'success' :
-      status === 'Inactive' ? 'secondary' :
-        status === 'Pending' ? 'warning' :
-          status === 'Banned' ? 'danger' :
-            'primary'
+
+  const getBadge = (registered) => {
+    return registered === 'Active' ? 'danger' :
+    registered === 'Inactive' ? 'danger' :
+    registered === 'Pending' ? 'danger' :
+    registered === 'Banned' ? 'danger' :
+            'danger'
   }
-  
+
   return (
     <tr key={user.id.toString()}>
-      <th scope="row"><Link to={userLink}>{user.id}</Link></th>   
-      <td><Link to={userLink}>{user.nombre}</Link></td>
-      <td>{user.Correo}</td>
-      <td>{user.Telefono1}</td>
-      <td><Link to={userLink}><Badge color={getBadge(user.Telefono2)}>{user.Telefono2}</Badge></Link></td>
+      <td>{user.id}</td>
+      <td>{user.name}</td>
+      <td><Badge color={getBadge(user.registered)}>{user.registered}</Badge></td>
+      <td>{user.role}</td>
+      <td>{user.status}</td>
     </tr>
   )
 }
 
+
 class Users extends Component {
 
   render() {
+    const userList = usersData.filter((user) => user.id < 10)
 
-    const userList = usersData.filter((user) => user.id < 6)
-
-    return (
+     return (
       <div className="animated fadeIn">
         <Row>
-          <Col xl={8}>
+          <Col xl={6}>
             <Card>
               <CardHeader>
-                <i className="fa fa-align-justify">Usuarios</i>
+                <i className="fa fa-align-justify">Correos Malos</i>
               </CardHeader>
               <CardBody>
                 <Table responsive hover>
                   <thead>
                     <tr>
                       <th scope="col">id</th>
-                      <th scope="col">Nombre</th>
+                      <th scope="col">nombre</th>
                       <th scope="col">Correo</th>
                       <th scope="col">Telefono1</th>
                       <th scope="col">Telefono2</th>
-                      
                     </tr>
                   </thead>
                   <tbody>
@@ -58,6 +58,7 @@ class Users extends Component {
                       <UserRow key={index} user={user}/>
                     )}
                   </tbody>
+                
                 </Table>
               </CardBody>
             </Card>
