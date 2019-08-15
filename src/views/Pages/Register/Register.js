@@ -14,18 +14,16 @@ const SIGNUP = gql`
 
 class Register extends Component {
   state = { 
-    first_name: '',
-    last_name: '',
-    birth_date: '',
-    email: '',
-    password: '',
-    profile_img: '',
+   email: '',
+   password: '',
+ 
 }
 
 handleInput = (e) => {
     const {id, value} = e.target
      this.setState({
         [id]:value
+
     });
 }
 
@@ -35,12 +33,12 @@ handleForm = (e, signup) => {
     signup({variables: { data: { ...this.state }}})
 }
 
-catchData = (data) => {
+handleData = (data) => {
     alert('Signup exitoso!');
     this.props.history.push('/login');
 }
 
- catchError = (error) => {
+ handleError = (error) => {
     console.log(error);
     alert('hubo un error...');
 }
@@ -68,30 +66,30 @@ catchData = (data) => {
                   <CardBody>
                     <Form>
                       <h1>Registrate</h1>
-                      <p className="text-muted">Registro</p>
+                      {/* <p className="text-muted">Registro</p>
                       <InputGroup className="mb-3">
                         <InputGroupAddon addonType="prepend">
                           <InputGroupText>
                             <i className="icon-user"></i>
                           </InputGroupText>
                         </InputGroupAddon>
-                        <Input type="text" placeholder="Nombre" />
-                      </InputGroup>
-                      <InputGroup className="mb-3">
+                        <Input id="id" onChange={this.handleInput} type="number" placeholder="id" />
+                      </InputGroup> */}
+                      {/* <InputGroup className="mb-3">
                         <InputGroupAddon addonType="prepend">
                           <InputGroupText>
                             <i className="icon-user"></i>
                           </InputGroupText>
                         </InputGroupAddon>
-                        <Input type="Text" placeholder="Nombre de Usuario" />
-                      </InputGroup>
+                        <Input id="User" onChange={this.handleInput} type="text" placeholder="User" />
+                      </InputGroup> */}
                       <InputGroup className="mb-3">
                         <InputGroupAddon addonType="prepend">
                           <InputGroupText>
                             <i className="icon-mail"></i>
                           </InputGroupText>
                         </InputGroupAddon>
-                        <Input type="email" placeholder="Correo" />
+                        <Input  onChange={this.handleInput} id="email" type="email" placeholder="email" />
                       </InputGroup>
                       <InputGroup className="mb-4">
                         <InputGroupAddon addonType="prepend">
@@ -99,7 +97,7 @@ catchData = (data) => {
                             <i className="icon-lock"></i>
                           </InputGroupText>
                         </InputGroupAddon>
-                        <Input type="password" placeholder="Contraseña"/>
+                        <Input id="password" onChange={this.handleInput} type="password" placeholder="password"/>
                       </InputGroup>
                       <Row>
                         <Col xs="6">

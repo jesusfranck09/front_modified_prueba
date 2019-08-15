@@ -45,7 +45,7 @@ handleData = (data) => {
   }
   localStorage.setItem('mawiToken', data.login.token) 
   alert('Sesión iniciada exitosamente!');
-  this.props.history.push('/');
+  this.props.history.push('/upload');
 }
 
 handleError = (error) => {
@@ -57,13 +57,12 @@ handleError = (error) => {
   render() {
     return (
       <Mutation mutation={LOGIN}>
-        {
+      {
 
-        (login, {data, error, loading}) => {
-          if (loading) console.log(loading);
-          if (data) this.handleData(data);
-          if (error) this.handleError(error);
-          console.log("la data es  " + data)
+      (login, {data, error, loading}) => {
+        if (loading) console.log(loading);
+        if (data) this.handleData(data);
+        if (error) this.handleError(error);
           return ( 
 
       <React.Fragment>
@@ -85,7 +84,7 @@ handleError = (error) => {
                             <i className="icon-user"></i>
                           </InputGroupText>
                         </InputGroupAddon>
-                        <Input type="email" placeholder="Usuario" />
+                        <Input id="email" onChange={this.handleInput} type="email"  placeholder="Usuario" />
                       </InputGroup>
                       <InputGroup className="mb-4">
                         <InputGroupAddon addonType="prepend">
@@ -93,7 +92,7 @@ handleError = (error) => {
                             <i className="icon-lock"></i>
                           </InputGroupText>
                         </InputGroupAddon>
-                        <Input type="password" placeholder="Contraseña"/>
+                        <Input id="password" onChange={this.handleInput} type="password" placeholder="Contraseña"/>
                       </InputGroup>
                       <Row>
                         <Col xs="6">
@@ -112,7 +111,7 @@ handleError = (error) => {
                     <div>
                       <h2>Registrate</h2>
                       <Link to="/register">
-                        <Button color="success" className="mt-3" active tabIndex={-1}>Registrarme ahora!</Button>
+                        <Button  color="success" className="mt-3" active tabIndex={-1}>Registrarme ahora!</Button>
                       </Link>
                     </div>
                   </CardBody>

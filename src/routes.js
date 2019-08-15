@@ -10,6 +10,7 @@ const correosBad = React.lazy(() => import('./emails/emailsBad'));
 const correosNone = React.lazy(() => import('./emails/EmailNone'));
 
 
+
 const routes = [
   { path: '/', exact: true, name: 'Home' },
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
@@ -19,6 +20,7 @@ const routes = [
   { path: '/correos', exact: true, name: 'correos', component: correosok },
   { path: '/correosBad', exact: true, name: 'correosBad', component: correosBad},
   { path: '/correosNone', exact: true, name: 'correosNone', component: correosNone},
+ 
 ];
 
 export default routes;  
